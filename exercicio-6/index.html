@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-  <title>Exercício 3 - Egadnet</title>
+  <title>Exercício 6 - Egadnet</title>
   <link rel="stylesheet" href="../style/global.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
@@ -14,20 +14,23 @@
 
     <form>
         <div class="form-group">
-          <h4>Exercício 3</h4><br />
-          <label for="nome">Nome</label>
-          <input type="text" class="form-control" id="nome" placeholder="Digite o nome">
+          <h4>Exercício 6</h4><br />
+          <label for="nome-livro">Nome do livro</label>
+          <input type="text" class="form-control" id="nome-livro" placeholder="Digite o nome do livro">
         </div>
         <div class="form-group">
-          <label for="sexo">Sexo</label>
-          <select name="sexo" id="sexo" class="form-control">
-            <option value="masculino">Masculino</option>
-            <option value="feminino">Feminino</option>
+          <label for="tipo-usuario">Tipo do usuário</label>
+          <select name="tipo-usuario" id="tipo-usuario" class="form-control">
+            <option value="professor">Professor</option>
+            <option value="aluno">Aluno</option>
           </select>
         </div>
         <div class="form-group">
-            <label for="idade">Idade</label>
-            <input type="number" class="form-control" id="idade" placeholder="Digite a idade">
+          <label for="recibo">Imprimir recibo?</label>
+          <select name="recibo" id="recibo" class="form-control">
+            <option value="sim">Sim</option>
+            <option value="não">Não</option>
+          </select>
           </div>
         <button id="submit">Submit</button><br />
         <div style="display:none;" class="alert alert-info" role="alert" id="mensagem"></div>
@@ -40,19 +43,19 @@
       $('#submit').click(function(e){
           e.preventDefault();
   
-          var nome = $('#nome').val();
-          var sexo = $('#sexo').val();
-          var idade = $('#idade').val();
+          var nomelivro = $('#nome-livro').val();
+          var tipousuario = $('#tipo-usuario').val();
+          var recibo = $('#recibo').val();
           var divMensagem = document.getElementById('mensagem');
 
-          $.post('exercicio-3/form.php', {
-              nome:nome,
-              sexo:sexo,
-              idade:idade
+          $.post('exercicio-6/form.php', {
+              nomelivro:nomelivro,
+              tipousuario:tipousuario,
+              recibo:recibo
           }, function(resposta){
               if(resposta){
                 divMensagem.removeAttribute("style")
-                divMensagem.innerHTML = resposta;
+                divMensagem.innerHTML = "A devolução do livro será em " + resposta + " dias";
               }
           });
           
